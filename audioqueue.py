@@ -157,18 +157,18 @@ if __name__ == "__main__":
         "Use a 16:9 aspect ratio to ensure consistency."
     )
 
-    user_inputs = [
-        "Is there free food for everyone ?",
-        "mountains are melt",
-        "we will get transportet by hyperloops"
-    ]
+    #user_inputs = [
+    #    "Is there free food for everyone ?",
+    #    "mountains are melt",
+    #    "we will get transportet by hyperloops"
+    #]
 
     # Collect user inputs (already captured in the previous steps)
-    #user_inputs = []
-    #for i in range(1, 4):
-     #   user_input = capture_audio_input(i)
-      #  if user_input:
-        #   user_inputs.append(user_input)
+    user_inputs = []
+    for i in range(1, 4):
+        user_input = capture_audio_input(i)
+        if user_input:
+           user_inputs.append(user_input)
 
     # Generate the image with the system role and combined user inputs
     img_path = generate_image(system_role, user_inputs)
