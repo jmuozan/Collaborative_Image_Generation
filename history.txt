@@ -19,3 +19,6 @@ we will get transportet by hyperloops
 generate some trees
 and generate some trees
 generate drones
+add some trees
+draw a chair
+draw a plane
