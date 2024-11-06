@@ -40,7 +40,7 @@ def get_next_image_filename():
 
 # File to store input history
 HISTORY_FILE = "history.txt"
-MAX_HISTORY_LINES = 6
+MAX_HISTORY_LINES = 3
 
 # Initialize speech recognizer
 recognizer = sr.Recognizer()
@@ -113,7 +113,7 @@ def generate_image(system_role, user_inputs ):
 
     try:
         # Send the prompt to OpenAI's DALL-E API for image generation
-        response = client.images.generate(model="dall-e-3", prompt=final_prompt,
+        response = client.images.create_variation(model="dall-e-2",image=open("Generated_Images/image_9.jpeg"), prompt=final_prompt,
         n=1,
         size="1024x1024")
 
@@ -153,27 +153,24 @@ if __name__ == "__main__":
         "You are an AI on a Light outdoor exhibition. "
         #"Your role is to combine multiple user inputs in a hand-drawn sketch illustration on a black background, with a focus on outlines and a childlike, minimalistic but colorful style."
         #"Your role is to combine multiple user inputs in a artistic illustration style on a black background, with a focus on outlines and minimalistic but colorful style."
-        #"Your role is to combine multiple user inputs in a artistic illustration style on a black background, with a focus on outlines and minimalistic but strong saturated colorful style, with neon colores." # - neon prompt
-        "Your role is to combine multiple user inputs in a hand drawn child like sketch style with a focus on outlines and  strong saturated neon like colors in a spray syle."
-        #"Your role is to combine multiple user inputs in a hand drawn illustration style on a black background, with a focus on outlines and minimalistic but strong saturated colorful style and high contrast colors."
-        #"Your role is to combine multiple user inputs in a hand drawn illustration style on a black background, with a focus on outlines and childlike, minimalistic but strong saturated colorful style."
+        #"Your role is to combine multiple user inputs in a artistic illustration style on a black background, with a focus on outlines and minimalistic but strong saturated colorful style, with neon colores."
+        "Your role is to combine multiple user inputs in a hand drawn illustration style on a black background, with a focus on outlines and minimalistic but strong saturated colorful style and high contrast colors."
         "use always a black background to ensure consistency"
-        "never use a real photo style"
         "Use a 16:9 aspect ratio to ensure consistency."
     )
 
-    #user_inputs = [
-    #    "Remove the darkness and dirt",
-    #    "lets envision the future more colorful",
-     #   "Technology will help us to figure out a lot"
-    #]
+    user_inputs = [
+        "remove the lights",
+        "remove humans",
+        "place cars"
+    ]
 
-    #Collect user inputs (already captured in the previous steps)
-    user_inputs = []
-    for i in range(1, 4):
-        user_input = capture_audio_input(i)
-        if user_input:
-           user_inputs.append(user_input)
+    # Collect user inputs (already captured in the previous steps)
+    #user_inputs = []
+    #for i in range(1, 4):
+      #  user_input = capture_audio_input(i)
+       # if user_input:
+       #    user_inputs.append(user_input)
 
     # Generate the image with the system role and combined user inputs
     img_path = generate_image(system_role, user_inputs)
